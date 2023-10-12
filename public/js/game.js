@@ -36,7 +36,9 @@ function getQuestionSet(cb) {
 }
 
 function shouldResume() {
-  return window.location.pathname === "/resume";
+  const match = window.location.search.match(/(\?|&)resume(=1)?/);
+  const hasResumeParam = !!match && match.length > 0;
+  return hasResumeParam;
 }
 
 /**
@@ -67,13 +69,10 @@ function shuffleSet(questionSet) {
  * @param {Progress} progress - Current progress
  */
 function initTest(questions, progress) {
-  console.log(arguments);
   currentProgress = progress.current;
   questionsTotal = progress.total;
 
   randomizedArray = questions.slice(progress.current - 1);
-
-  console.log("randomizedArray:", randomizedArray);
 
   setupAnswerCheck();
 
@@ -132,7 +131,6 @@ function nextSequence() {
   }
 
   currentQuestion = randomizedArray.splice(0, 1)[0];
-  console.log("currentQuestion:", currentQuestion);
 
   $("#questionImage").attr("src", currentQuestion.image);
   $("#one").html(currentQuestion.one);

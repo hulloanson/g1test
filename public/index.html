@@ -21,16 +21,34 @@
 
     <h1>Welcome to the Ontario G1 practice website!</h1>
 
-    <div id="start-buttons">
-      <button style="display: none" id="resume-button" class="begin-button" type="submit" value="1" name="resume">↠
-        resume
-        ↞</button>
-      <button class="begin-button" type="submit">↠ start
-        <span id="start-anew-text" style="display: none"> anew </span>
-        ↞</button>
-      <p><small>Progress is saved on this device</small></p>
-      <a href="review-wrong.html" id="review-wrong-button" class="begin-button" style="display: none">! review wrong
-        answers !</a>
+    <div id="start-options">
+      <div>
+        <a role="button" id="resume-button" class="focus-button" style="display: none" href="/test.html?resume">↠ resume
+          ↞</a>
+        <div class="caption">
+          <p><small>Resume from saved progress</small>
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <a role="button" class="focus-button" href="/test.html">↠ start
+          <span id="start-anew-text" style="display: none"> anew </span>↞</a>
+        <div class="caption">
+          <p><small>Progress is saved on this device. </small>
+          </p>
+          <p><small>Note: removes previous progress</small></p>
+        </div>
+      </div>
+
+      <div>
+        <a href="review-wrong.html" id="review-wrong-button" class="focus-button" style="display: none">! review !</a>
+        <div class="caption">
+          <p><small>Review your mistakes</small>
+          </p>
+        </div>
+      </div>
+
     </div>
 
   </section>
@@ -44,13 +62,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="/js/storage.js" type="application/javascript"></script>
   <script src="/js/home.js"></script>
-  <script>
-    const store = new AnswersStore();
-    const wronglyAnswered = store.getWronglyAnswered();
-    if (wronglyAnswered.length !== 0) {
-      $("#review-wrong-button").css('display', 'unset');
-    }
-  </script>
 
 </body>
 

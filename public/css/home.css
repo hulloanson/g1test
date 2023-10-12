@@ -26,13 +26,17 @@ h1 {
   padding-bottom: 1rem;
 }
 
-#start-buttons {
+#start-options {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.begin-button {
+#start-options > *:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.focus-button {
   font-size: 25px;
   border: 7px double #949494;
   padding: 6px 45px 10px;
@@ -40,13 +44,22 @@ h1 {
   font-family: "Oswald", sans-serif;
   color: #e4f2f7;
   transition: padding 0.5s ease, border-radius 0.5s ease;
-  margin-top: 7rem;
+  margin: 16px 0;
+  display: block;
 }
 
-.begin-button:hover {
+.focus-button:hover {
   cursor: pointer;
   padding: 6px 10px 10px;
   border-radius: 10px;
+}
+
+.caption {
+  margin: 8px 0;
+}
+
+.caption p {
+  margin: 0
 }
 
 .lines {
@@ -71,7 +84,7 @@ h1 {
   .line {
     width: 85%;
   }
-  .begin-button {
+  .focus-button {
     font-size: 23px;
   }
 }
@@ -90,9 +103,9 @@ h1 {
   h1 {
     font-size: 28px;
   }
-  .begin-button {
+  .focus-button {
     padding: 4px 36px 9px;
-    margin-top: 5rem;
+    margin-top: initial;
   }
   .lines {
     margin-top: 6rem;

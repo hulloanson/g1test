@@ -132,7 +132,6 @@ ProgressStore.prototype.getQuestions = function getQuestions() {
  * @returns {(null|Progress)}
  */
 ProgressStore.prototype.getProgress = function getProgress() {
-  console.log("getprogress:", this.stored);
   return this.stored
     ? {
         current: this.stored?.currentQuestion + 1,
