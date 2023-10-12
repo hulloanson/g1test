@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   <title>Ontario G1 Practice Test</title>
-  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="/css/home.css">
   </link>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Muli:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
 
     <h1>Welcome to the Ontario G1 practice website!</h1>
 
-    <form action="/" method="post">
+    <div id="start-buttons">
       <button style="display: none" id="resume-button" class="begin-button" type="submit" value="1" name="resume">↠
         resume
         ↞</button>
@@ -31,7 +31,7 @@
       <p><small>Progress is saved on this device</small></p>
       <a href="review-wrong.html" id="review-wrong-button" class="begin-button" style="display: none">! review wrong
         answers !</a>
-    </form>
+    </div>
 
   </section>
 
@@ -42,8 +42,8 @@
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="public/storage.js" type="application/javascript"></script>
-  <script src="public/home.js"></script>
+  <script src="/js/storage.js" type="application/javascript"></script>
+  <script src="/js/home.js"></script>
   <script>
     const store = new AnswersStore();
     const wronglyAnswered = store.getWronglyAnswered();
