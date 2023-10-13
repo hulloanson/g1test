@@ -71,6 +71,8 @@ function shuffleSet(questionSet) {
 function initTest(questions, progress) {
   currentProgress = progress.current;
   questionsTotal = progress.total;
+  questionsRight =
+    currentProgress - answerStore.getWronglyAnswered().length - 1;
 
   randomizedArray = questions.slice(progress.current - 1);
 
