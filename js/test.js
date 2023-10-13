@@ -79,39 +79,53 @@ function initTest(questions, progress) {
   nextSequence();
 }
 
+function resetStores() {
+  answerStore.clear();
+  progressStore.clear();
+}
+
 function redirectToMainPage() {
   this.window.location = "/";
 }
 
-function redirectIfNoProgress(progress) {
-  if (!progress) {
-    alert("No progress saved. Click okay to go back to start page.");
-    this.window.location = "/";
-  }
+function redirectToResume() {
+  this.window.location = "/test.html?resume";
+}
+
+function redirectToNewTest() {
+  resetStores();
+  this.window.location = "/test.html";
+}
+
+function initNewTest() {
+  getQuestionSet(function (questions, error) {
+    if (error) {
+      console.log(error.message);
+    } else {
+      var shuffled = shuffleSet(questions);
+      resetStores();
+      progressStore.startProgress(shuffled);
+      initTest(shuffled, progressStore.getProgress());
+    }
+  });
 }
 
 window.addEventListener("load", function () {
-  if (shouldResume()) {
-    var progress = progressStore.getProgress();
-    if (!progress) {
-      alert("No progress saved. Click okay to go back to start page.");
-      this.window.location = "/";
-      return;
-    }
+  var progress = progressStore.getProgress();
 
+  if (shouldResume() && progress) {
     initTest(progressStore.getQuestions(), progress);
+  } else if (!shouldResume() && !progress) {
+    initNewTest();
+  } else if (shouldResume() && !progress) {
+    alert("No progress saved. Click okay to go back.");
+    redirectToMainPage();
   } else {
-    answerStore.clear();
-    getQuestionSet(function (questions, error) {
-      if (error) {
-        console.log(error.message);
-      } else {
-        var shuffled = shuffleSet(questions);
-        progressStore.startProgress(shuffled);
-        var progress = progressStore.getProgress();
-        initTest(shuffled, progress);
-      }
-    });
+    window.confirm(
+      "There is a save. Click okay to resume, cancel to start anew."
+    )
+      ? redirectToResume()
+      : redirectToNewTest();
   }
 });
 
