@@ -49,9 +49,6 @@ function shouldResume() {
 function shuffleSet(questionSet) {
   var randomized = [];
 
-  var length = questionSet.length;
-  questionsTotal = length;
-
   // Create a randomized array of all the questions
 
   while (length > 0) {
@@ -142,7 +139,7 @@ function populateCount() {
 
 function nextSequence() {
   if (randomizedArray.length == 0) {
-    gameFinished();
+    testFinished();
     return;
   }
 
@@ -191,10 +188,8 @@ function setupAnswerCheck() {
 
       // Go to the next question
       setTimeout(function () {
-        if (randomizedArray.length > 0) {
-          progressStore.saveProgress(++currentProgress);
-          nextSequence();
-        }
+        progressStore.saveProgress(++currentProgress);
+        nextSequence();
       }, 1500);
 
       // Reset correct answer color
@@ -227,10 +222,8 @@ function setupAnswerCheck() {
 
       // Go to next question
       setTimeout(function () {
-        if (randomizedArray.length > 0) {
-          progressStore.saveProgress(++currentProgress);
-          nextSequence();
-        }
+        progressStore.saveProgress(++currentProgress);
+        nextSequence();
       }, 1500);
 
       // Reset correct answer color
@@ -246,8 +239,8 @@ function setupAnswerCheck() {
   });
 }
 
-// Give a final score at the end with an option to restart the game
-function gameFinished() {
+// Give a final score at the end with an option to restart the test
+function testFinished() {
   progressStore.clear();
   $(".answer input").click(function () {
     setTimeout(function () {
