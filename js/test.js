@@ -51,11 +51,10 @@ function shuffleSet(questionSet) {
 
   // Create a randomized array of all the questions
 
-  while (length > 0) {
-    var randomNumber = Math.floor(Math.random() * length);
+  while (questionSet.length > 0) {
+    var randomNumber = Math.floor(Math.random() * questionSet.length);
     randomized.push(questionSet[randomNumber]);
     questionSet.splice(randomNumber, 1);
-    length--;
   }
   return randomized;
 }
@@ -111,10 +110,10 @@ function initNewTest() {
 
 window.addEventListener("load", function () {
   var progress = progressStore.getProgress();
-
   if (shouldResume() && progress) {
     initTest(progressStore.getQuestions(), progress);
   } else if (!shouldResume() && !progress) {
+
     initNewTest();
   } else if (shouldResume() && !progress) {
     alert("No progress saved. Click okay to go back.");
